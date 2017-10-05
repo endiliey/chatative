@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { Colors, Styles } from './Shared';
 
-class Separator extends Component {
+class Divider extends Component {
   render() {
     return (
       <View style={styles.container} /> 
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Separator;
+export default Divider;
