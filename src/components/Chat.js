@@ -22,13 +22,14 @@ class Chat extends Component {
           },
         },
       ],
-    })
+    });
   }
 
   onSend(messages = []) {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
-    }))
+    }));
+    console.log(messages);
   }
 
   render() {
