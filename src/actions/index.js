@@ -61,6 +61,7 @@ export function fetchMessages() {
   return function (dispatch) {
     dispatch(setIsFetching(true));
 
+    console.log("fetch messages action here");
     firebase.database()
             .ref('messages')
             .limitToLast(20)
@@ -69,7 +70,7 @@ export function fetchMessages() {
                 const messages = snapshot.val() || [];
 
                 dispatch(receiveMessages(messages))
-              }, 0);
+              }, 1);
             });
   }
 }

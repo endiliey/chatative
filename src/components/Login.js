@@ -8,14 +8,27 @@ import TextField from './common/TextField';
 import Button from './common/Button';
 import Divider from './common/Divider';
 import Header from './common/Header';
+import { connect } from 'react-redux';
+import { login, setUserName, setUserAvatar } from '../actions';
 
-class Login extends Component {
+const mapStateToProps = (state) => ({
+  user: state.user
+});
+
+export class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
       avatar: ''
     }
+  }
+
+  loginPressed() {
+    console.log("login pressed");
+    this.props.dispatch(setUserName(this.state.name));
+    this.props.dispatch(setUserAvatar(this.state.avatar));
+    this.props.dispatch(login());
   }
 
   render() {
@@ -36,7 +49,7 @@ class Login extends Component {
           onChangeText={avatar => this.setState({ avatar })}
         />
         <Divider />
-        <Button onPress={() => console.log("Button pressed")}>
+        <Button onPress={() => this.loginPressed()}>
           Start Chatting !
         </Button>
         <Divider />
@@ -54,4 +67,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+export default LoginContainer = connect(mapStateToProps)(Login);

@@ -1,59 +1,41 @@
 import React, { Component } from 'react';
-import { GiftedChat } from 'react-native-gifted-chat'
+import { ActivityIndicator } from 'react-native';
+import { GiftedChat } from 'react-native-gifted-chat';
+import { sendMessage } from '../actions';
+import { connect } from 'react-redux';
 
-class Chat extends Component {
+const mapStateToProps = (state) => ({
+  user: state.user,
+  messages: state.chatroom.messages,
+  isFetching: state.chatroom.meta.isFetching
+});
+
+export class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: []
+      messages: this.props.messages || [],
+      user: this.props.user
     };
   }
-  componentWillMount() {
-    this.setState({
-      messages: [
-        {
-          _id: 2,
-          text: 'Hello my friend',
-          createdAt: new Date(),
-          user: {
-            _id: 2,
-            name: 'Endi',
-            avatar: 'https://dl.dropboxusercontent.com/s/6g9pw83nlt8lqbl/5a5edd95d8ca690562acdc2e-1-2018-01-26T04_46_41.811Z.png',
-          },
-        },
-        {
-          _id: 1,
-          text: 'Hi Endi',
-          createdAt: new Date().setDate(new Date().getDate() + 2),
-          user: {
-            _id: 2,
-            name: 'Endi',
-            avatar: 'https://dl.dropboxusercontent.com/s/6g9pw83nlt8lqbl/5a5edd95d8ca690562acdc2e-1-2018-01-26T04_46_41.811Z.png',
-          },
-        },
 
-      ],
-    });
-  }
-
-  onSend(messages = []) {
-    this.setState(previousState => ({
-      messages: GiftedChat.append(previousState.messages, messages),
-    }));
-    console.log(messages);
+  onSend(text) {
+    sendMessage(text, this.props.user)
   }
 
   render() {
+    /*
+    return (this.props.isFetching ? 
+      <ActivityIndicator size="large" color="#0000ff" /> :
+      */
     return (
       <GiftedChat
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
-        user={{
-          _id: 1,
-        }}
+        user={this.state.user}
       />
     );
   }
 }
 
-export default Chat;
+export default ChatContainer = connect(mapStateToProps)(Chat);

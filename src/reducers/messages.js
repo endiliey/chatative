@@ -2,7 +2,7 @@ function message(state, action) {
   switch (action.type) {
     case 'ADD_MESSAGE':
       return {
-        _id: action_id,
+        _id: action._id,
         text: action.text,
         createdAt: action.createdAt,
         user: action.user

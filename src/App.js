@@ -5,8 +5,8 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import rootReducer from './reducers';
 import { fetchMessages } from './actions';
-import Login from './components/Login';
-import Chat from './components/Chat';
+import LoginContainer from './components/Login';
+import ChatContainer from './components/Chat';
 
 const loggerMiddleware = createLogger();
 
@@ -24,9 +24,9 @@ const Screen = connect(
   })
 )(( { _id }) => {
   if ( _id !== null ) {
-    return (<Chat />);
+    return (<ChatContainer />);
   } else {
-    return (<Login />);
+    return (<LoginContainer />);
   }
 });
 
