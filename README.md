@@ -5,6 +5,8 @@
 
 ## Screenshots
 ![login](./preview/login.PNG)
+![chat](./preview/chat.PNG)
+
 
 ## Info
 * **Platform:** iOS & Android

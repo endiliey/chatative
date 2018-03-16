@@ -13,12 +13,12 @@ class Chat extends Component {
       messages: [
         {
           _id: 1,
-          text: 'Hello developer',
+          text: 'Hello my friend',
           createdAt: new Date(),
           user: {
             _id: 2,
-            name: 'React Native',
-            avatar: 'https://facebook.github.io/react/img/logo_og.png',
+            name: 'Endi',
+            avatar: 'https://dl.dropboxusercontent.com/s/6g9pw83nlt8lqbl/5a5edd95d8ca690562acdc2e-1-2018-01-26T04_46_41.811Z.png',
           },
         },
       ],
