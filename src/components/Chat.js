@@ -12,7 +12,7 @@ class Chat extends Component {
     this.setState({
       messages: [
         {
-          _id: 1,
+          _id: 2,
           text: 'Hello my friend',
           createdAt: new Date(),
           user: {
@@ -21,6 +21,17 @@ class Chat extends Component {
             avatar: 'https://dl.dropboxusercontent.com/s/6g9pw83nlt8lqbl/5a5edd95d8ca690562acdc2e-1-2018-01-26T04_46_41.811Z.png',
           },
         },
+        {
+          _id: 1,
+          text: 'Hi Endi',
+          createdAt: new Date().setDate(new Date().getDate() + 2),
+          user: {
+            _id: 2,
+            name: 'Endi',
+            avatar: 'https://dl.dropboxusercontent.com/s/6g9pw83nlt8lqbl/5a5edd95d8ca690562acdc2e-1-2018-01-26T04_46_41.811Z.png',
+          },
+        },
+
       ],
     });
   }
