@@ -1,9 +1,9 @@
 # chatative
-:speech_balloon: Anonymous chatting mobile app built with React Native
+:speech_balloon: Global chatting mobile app built with React Native + Redux +
+Firebase
 
 ## Screenshots
-![login](./preview/login.PNG)
-![chat](./preview/chat.PNG)
+![final](./preview/final.PNG)
 
 
 ## Info
@@ -23,14 +23,3 @@ Refer to [official doc](https://facebook.github.io/react-native/docs/running-on-
 1. `npm install`
 2. `react-native run-android`
 
-## TODO
--- [x] ~~Build basic reusable UI components`~~
-- [x] ~~Build Login UI~~
-- [x] ~~Configure firebase~~
-- [ ] Build Chat UI
-- [ ] Build all the React-Redux thingy (reducers, actions)
-- [ ] Connect the UI with Redux and firebase a.k.a build containers
-- [ ] Refactor ??
---[ ] Add unit test ??
-- [ ] Push Notification ??
---[ ] Daily build with Travis CI ?
