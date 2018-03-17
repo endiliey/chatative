@@ -19,8 +19,25 @@ export class Chat extends Component {
     };
   }
 
-  onSend(text) {
-    sendMessage(text, this.props.user)
+  componentWillMount() {
+    this.setState({
+      messages: [
+        {
+          _id: 1,
+          text: 'Hello developer',
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: 'React Native',
+            avatar: 'https://facebook.github.io/react/img/logo_og.png',
+          },
+        },
+      ],
+    })
+  }
+
+  onSend(text = []) {
+    this.props.dispatch(sendMessage(text, this.props.user));
   }
 
   render() {
@@ -32,7 +49,11 @@ export class Chat extends Component {
       <GiftedChat
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
-        user={this.state.user}
+        user={{
+          _id: this.state.user._id,
+          avatar: this.state.user.avatar,
+          name: this.state.user.name
+        }}
       />
     );
   }

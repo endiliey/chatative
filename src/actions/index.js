@@ -7,25 +7,28 @@ export function addMessage(message) {
   };
 }
 
-export function sendMessage(text, user) {
+export function sendMessage(messages, user) {
   return function (dispatch) {
-    let msg = {
-      text: text,
-      createdAt: now,
-      user: {
-        _id: user._id,
-        avatar: user.avatar
-      }
-    };
-
-    const newMsgRef = firebase.database()
-                              .ref('messages')
-                              .push();
-    msg._id = newMsgRef.key;
-    newMsgRef.set(msg);
-
-    dispatch(addMessage(msg));
+    
+    messages.forEach(message => {
+      var messagesRef = firebase.database().ref('messages');
+      var newMsgRef = messagesRef.push();
+      let msg = {
+        _id: Date.now(),
+        text: message.text,
+        createdAt: Date.now(),
+        user: {
+          _id: user._id,
+          avatar: user.avatar,
+          name: user.name
+        }
+      };
+      
+      newMsgRef.set(msg);
+      dispatch(addMessage(msg));
+    });
   }
+
 }
 
 export function setIsFetching(isFetching) {
@@ -37,8 +40,8 @@ export function setIsFetching(isFetching) {
 
 export function receiveMessages(messages) {
   return function (dispatch) {
-    Object.values(messages).forEach((msg) => {
 
+    Object.values(messages).forEach((msg) => {
       // process msg from server 
       var item = {
         _id: msg._id,
@@ -46,7 +49,8 @@ export function receiveMessages(messages) {
         createdAt: new Date(msg.createdAt),
         user: {
           _id: msg.user._id,
-          avatar: msg.user.avatar
+          avatar: msg.user.avatar,
+          name: msg.user.name
         }
       };
       dispatch(addMessage(item));
@@ -66,11 +70,9 @@ export function fetchMessages() {
             .ref('messages')
             .limitToLast(20)
             .on('value', (snapshot) => {
-              setTimeout(() => {
-                const messages = snapshot.val() || [];
+              const messages = snapshot.val() || [];
 
-                dispatch(receiveMessages(messages))
-              }, 1);
+              dispatch(receiveMessages(messages))
             });
   }
 }
@@ -102,6 +104,7 @@ export function login() {
     firebase.auth()
             .signInAnonymously()
             .then((user) => {
+              console.log("successful sign in anonymously");
               dispatch(setUserId(user.uid));
               dispatch(fetchMessages());
             });
