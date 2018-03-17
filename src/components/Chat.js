@@ -13,13 +13,14 @@ const mapStateToProps = (state) => ({
 export class Chat extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      messages: this.props.messages || [],
-      user: this.props.user
-    };
+      messages: [],
+    }
   }
 
   componentWillMount() {
+    /*
     this.setState({
       messages: [
         {
@@ -29,11 +30,12 @@ export class Chat extends Component {
           user: {
             _id: 2,
             name: 'React Native',
-            avatar: 'https://facebook.github.io/react/img/logo_og.png',
+            avatar: 'https://porcelainfacespa.com/blog/wp-content/uploads/2013/08/suzy__miss_a__png__render__by_gajmeditions-d79dtqa-e1432807580441.png',
           },
         },
       ],
-    })
+    });
+    */
   }
 
   onSend(text = []) {
@@ -41,18 +43,14 @@ export class Chat extends Component {
   }
 
   render() {
-    /*
-    return (this.props.isFetching ? 
-      <ActivityIndicator size="large" color="#0000ff" /> :
-      */
     return (
       <GiftedChat
-        messages={this.state.messages}
+        messages={this.props.messages}
         onSend={messages => this.onSend(messages)}
         user={{
-          _id: this.state.user._id,
-          avatar: this.state.user.avatar,
-          name: this.state.user.name
+          _id: this.props.user._id,
+          avatar: this.props.user.avatar,
+          name: this.props.user.name
         }}
       />
     );
