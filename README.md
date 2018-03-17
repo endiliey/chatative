@@ -12,7 +12,7 @@ Firebase
 
 ## Develop
 
-Note that this project is bui:lt with Native Code, unlike Create React Native App. 
+Note that this project is built with Native Code, unlike Create React Native App. 
 If you've never worked on React Native project, refer to official docs [React Native - Getting Started](https://facebook.github.io/react-native/docs/getting-started.html) for more information on dependencies installation
 
 I've only tried it for Android but technically speaking it should work on ios as well.
@@ -22,3 +22,7 @@ Refer to [official doc](https://facebook.github.io/react-native/docs/running-on-
 1. `npm install`
 2. `react-native run-android`
 
+## License
+
+Chatative is released under the [MIT
+License](./LICENSE.MD).
